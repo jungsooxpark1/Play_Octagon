@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta name="description" content="Record a video from your webcam and upload it directly to Youtube.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Streaming</title> 
+	<meta name="mobile-web-app-capable" content="yes"> 
+	<meta name="apple-mobile-web-app-capable" content="yes"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3mobile.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700" rel="stylesheet">
+    <script src="dist/easytimer.min.js"></script>
+  
+    <style type="text/css" media="screen">
+    html, body { width:100%; height: 100%; background-color: #0045AC;}
+    body { margin:0; padding:0; overflow:hidden; } 
+
+    .cover {
+    	width:100%; 
+    	height:100%;
+    	background-color: #0045AC; 
+    	padding: 10vw;
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    }
+
+    #cont {
+    	color: white;
+    	font-family: 'Roboto', sans-serif;
+	    font-size: 8vw;
+	    font-weight: 600;
+	    z-index: 2;
+	    text-align: left;
+	    /*background-color: #0045AC; */
+	    width:100%; 
+    	height:100%; 
+    }
+
+    #toggle {
+    	width:20vw; 
+    	height:12vw; 
+    	background-color: white;
+    	color: #0045AC;
+    	font-family: 'Roboto', sans-serif;
+	    font-size: 5vw;
+	    font-weight: 600;
+	    text-align: center;
+	    /*padding-top: 10vw;*/
+	    padding-right: 10vw;
+	    border-radius: 1vw;
+	    border-style: none;
+	    top: 30vw;
+    }
+
+    .flashContent {
+    	width:100%; 
+    	height:100%;
+    	top: 667px;
+    	display: none; 
+    }
+    #vid {
+    	width:100%; 
+    	height:100%;
+    }
+    /*#time2 {
+	    font-family: 'Roboto', sans-serif;
+	    font-size: 20vw;
+	    font-weight: 600;
+	} */
+    </style>
+    <script>
+    	function toggleFullScreen() {
+		  var element = document.getElementById(id);    
+
+		  if (element.mozRequestFullScreen) {
+		    element.mozRequestFullScreen();
+		    // element.autoplay();
+
+		  } else if (element.webkitRequestFullScreen) {
+		    element.webkitRequestFullScreen();
+		  }  
+		}
+
+
+ //    	function toggleFullScreen() {
+
+	// 	  	if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
+	// 		   (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+	// 		    if (document.documentElement.requestFullScreen) {  
+	// 		      document.documentElement.requestFullScreen();  
+	// 		    } else if (document.documentElement.mozRequestFullScreen) {  
+	// 		      document.documentElement.mozRequestFullScreen();  
+	// 		    } else if (document.documentElement.webkitRequestFullScreen) {  
+	// 		      document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+	// 		    }  
+	// 		  } 
+	// 		  // else {  
+	// 		  //   if (document.cancelFullScreen) {  
+	// 		  //     document.cancelFullScreen();  
+	// 		  //   } else if (document.mozCancelFullScreen) {  
+	// 		  //     document.mozCancelFullScreen();  
+	// 		  //   } else if (document.webkitCancelFullScreen) {  
+	// 		  //     document.webkitCancelFullScreen();  
+	// 		  //   }  
+	// 		  // }  
+	// }
+    </script>
+<!--     <script>
+    	$(document).ready(function(){
+    		$("#toggle").click(function(){
+        		$(".flashContent").animate({top: '0px'});
+        		$(".flashContent").show();
+		    });
+			// $("#toggle").click(function(){
+	  //   		$(".flashContent").animate({top: '667px'});
+	  //   		$(".flashContent").hide(200);
+		 //    });
+		});
+    </script> -->
+  </head> 
+ 
+<body>
+	<!-- <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen()"> -->
+	<div class="cover">
+		<div id="cont">Capture this moment</div>
+		<button id="toggle" onclick="toggleFullScreen()">YES!</button>
+		<!-- <button id="toggle">YES!</button> -->
+	<!-- <div id="cont"><i>Dear Visitors, Do you want to capture this moment?</i></div> -->
+	</div>
+	<div class="flashContent">
+	<!-- video part -->
+		<div id="vid"><img src="{{ url_for('video_feed') }}"></div>
+	</div>
+</body>
+</html>
+
+
+ 

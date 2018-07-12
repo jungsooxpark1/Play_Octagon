@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+	<title>Propelland</title> 
+	<meta name="mobile-web-app-capable" content="yes"> 
+	<meta name="apple-mobile-web-app-capable" content="yes"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3mobile.css"> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700" rel="stylesheet">
+    <!-- <script src="dist/easytimer.min.js"></script> -->
+  
+    <style type="text/css" media="screen">
+
+    html, body { position: fixed; width:100%; height: 100%; background-color: #000;}
+    body { margin:0; padding:0; overflow:hidden;} 
+    
+    @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  
+	  html {
+	    transform: rotate(-90deg);
+	    transform-origin: left top;
+	    width: 100vh;
+	    overflow-x: hidden;
+	    position: absolute;
+	    top: 100%;
+	    left: 0;
+	  }
+	}	
+
+    .cover {
+    	position: absolute;
+    	width:100%; 
+    	height:100%;
+    	background-color: #000;
+    	/*margin: 0 auto;*/
+    	text-align: center;
+    } 
+
+    #down {
+    	position: absolute;
+    	display: inline-block;
+    	left: 80%; 
+  		transform: translate(-50%, -50%); 
+	    margin-bottom: 10px;
+    	width: 70px;
+    	height: 75px;
+    	 
+    	background-color: none;
+	    text-align: center;
+	    /*border-radius: 100%;
+	    border-style: none;*/
+	    bottom: -15px;
+	    /*box-shadow: 1px 2px 4px rgba(0, 0, 0, .1);*/
+    }
+
+    #btn {
+    	/*position: absolute;*/
+    	display: block;
+	    /*margin-left: auto;
+	    margin-right: auto;*/
+	    text-align: center;
+	    /*width: 53px;
+    	height: 53px;*/
+    	left: 50%;
+  		top: 50%;
+  		transform: translate(-10%, -3%);
+  		/*transform: translate(-24%, 20%);*/
+  		background-color: rgba(0,0,0,0); 
+  		border-radius: 100%;
+	    border-style: none;
+	    bottom: -15px;
+	    /*box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.9);*/
+    }
+ 
+    canvas#canvas {
+		position: absolute;
+		display: inline-block;
+		width:100%; 
+    	height:100%; 
+		/*width: 375px; 
+		height: 667px;*/
+		top: 0;
+		left: 0;
+	    background-color: black;
+    }
+
+    #canv {
+    	position: absolute; 
+    	display: inline-block;
+    	width:100%; 
+    	height:100%; 
+    	/*width:375px; 
+    	height:667px;*/
+    	top: 0;
+    	left: 0;
+		/*float:left;
+	    clear:both;*/
+    }
+
+    #bar {
+    	position: absolute; 
+    	display: inline-block;
+    	left: 50%;
+  		/*top: 50%;*/
+  		transform: translate(-50%, -50%);
+	    width: 100%;
+	    height: 64px;
+	    background-color: #0045AC;
+	    bottom: -32px;
+	    /*clip: rect(0px,50px,50px,0px); */
+	} 
+	#logo {
+		left: 23%;
+		position: absolute; 
+    	display: inline-block;
+    	height: 30px;
+    	top: 50%;
+    	transform: translate(-50%, -50%);
+	}
+
+	*:focus {
+    outline: none;
+	}
+    </style>
+
+    <script>
+
+// // convert canvas to png
+// 		var png = ReImg.fromCanvas(document.getElementById('canvas')).toPng();
+
+// // force client download of svg as png image
+// 		ReImg.fromSvg(document.querySelector('svg')).downloadPng();
+
+		// var download = function(){
+		//   var link = document.createElement('a');
+		//   link.download = 'filename.png';
+		//   link.href = document.getElementById('canvas').toDataURL()
+		//   link.click();
+		// }
+
+		// var img = document.createElement('img');
+		// img.src = "{{ url_for('video_feed') }}";
+
+		// var img = document.getElementById("canv");
+		 
+		// img.onload = function () {
+		// 	var c = document.getElementById('canvas');
+		// 	var ctx = c.getContext('2d');
+		// 	ctx.drawImage(img, 0, 0, 375, 667);
+		// }
+
+		window.onload = function() {
+		    var canvas = document.getElementById("canvas");
+		    var ctx = canvas.getContext("2d");
+		    var img = document.getElementById("canv");
+		    ctx.drawImage(img, 0, 0, 375, 667);
+		    ctx.restore(); 
+		    // ctx.clearImage(img, 0, 0, 375, 667); 
+		}
+ 		
+ 		// function refresh(){
+   //  		// update();
+			// var download = document.getElementById("down");
+
+			// var image = document.getElementById("canvas").toDataURL("image/png")
+	  //                   .replace("image/png", "image/octet-stream");
+
+			// 	download.setAttribute("href", image); 
+			// }
+
+    	function download(){
+    		// update();
+    		window.onload();
+			var download = document.getElementById("down");
+
+			var image = document.getElementById("canvas").toDataURL("image/png")
+	                    .replace("image/png", "image/octet-stream");
+
+				download.setAttribute("href", image); 
+			}
+
+ 	// 	var canvas = document.getElementById("canvas");
+		// document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+	</script>
+	<!-- <script type="text/javascript">
+            function saveImage() {
+                var ua = window.navigator.userAgent;
+ 
+                // if (ua.indexOf("Chrome") > 0) {
+                // save image without file type
+                var canvas = document.getElementById("canvas");
+                document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+                // save image as png
+                var link = document.createElement('a');
+                link.download = "test.png";
+                link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
+                link.click();
+                // }
+                // else {
+                //     alert("Please use Chrome");
+                // }
+            }
+        </script> -->
+  </head> 
+ 
+<body> 
+	<div class="cover"> 
+		<canvas id="canvas" width="375" height="667" ></canvas>
+		<img src="{{ url_for('video_feed') }}" id="canv" width="375" height="667">
+		<!-- <img src="{{ url_for('video_feed') }}" width="375px" height="667px" id="canv"> -->
+		 
+		 <!-- <span id="clockbox" class="top"></span>
+      	<div class="sub"><span id="day"></span><span id="comma">, </span><span id="mon"></span> <span id="date"></span></div> -->
+      	<div id="bar"><a href="http://propelland.com/" target="_blank"><div id="logo"><img src="https://files.cargocollective.com/645228/logo.png" height="30px" width="auto"></div></a></div>
+ 
+ 		<a id="down" download="Propelland.png"><button type="button" id="btn" onClick="download()"><img src="https://files.cargocollective.com/645228/cx.png" height="90" width="90"></button></a>
+		 
+	</div>  
+</body>
+</html>
